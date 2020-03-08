@@ -1,0 +1,21 @@
+ion-item {
+    --background: #e9f0ff;
+    margin-bottom: 1em;
+    border-radius: 10px;
+}
+
+
+.content-container-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+}

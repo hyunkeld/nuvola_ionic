@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nuevo viaje</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form [formGroup]="form">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Pais</ion-label>
+        <ion-input formControlName="pais" name="pais"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Departamento</ion-label>
+        <ion-input formControlName="departamento" name="departamento"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Ciudad</ion-label>
+        <ion-input formControlName="ciudad" name="ciudad"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Fecha del viaje</ion-label>
+        <ion-input formControlName="fecha_viaje" name="fecha_viaje" type="date"></ion-input>
+      </ion-item>
+
+      <ion-button color="primary" (click)="addTravel()" [disabled]="!form.valid">Agregar viaje</ion-button>
+
+    </ion-list>
+
+
+    <ion-list *ngIf="travelsUser.length > 0">
+
+      <ion-item lines="none" *ngFor="let item of travelsUser">
+
+        <ion-label>
+          <h1>{{item.pais}}</h1>
+          <p>
+            <b>Departamento: </b>{{item.departamento}}
+          </p>
+          <p>
+            <b>Ciudad: </b>{{item.ciudad}}
+          </p>
+          <p>
+            <b>Fecha de viaje: </b>{{item.fecha_viaje}}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-button color="secondary" (click)="saveTravel()" [disabled]="travelsUser.length == 0">Enviar todo y terminar
+  </ion-button>
+</ion-footer>

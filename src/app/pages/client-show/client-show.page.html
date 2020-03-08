@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <span *ngIf="updateMode">Editar cliente</span>
+      <span *ngIf="!updateMode">Nuevo cliente</span>
+    </ion-title>
+
+    <ion-buttons slot="end" *ngIf="user">
+      <ion-button routerLink="/travels-user/{{user.email}}">
+        Ver viajes
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="content-container-photo">
+    <img [src]="base64Image" alt="" *ngIf="base64Image">
+    <ion-button (click)="capturePhoto()">Capturar foto</ion-button>
+  </div>
+  <!-- <ion-button (click)="capturePhoto()">FOTO</ion-button> -->
+  <form [formGroup]="form">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Documento</ion-label>
+        <ion-input formControlName="documento" name="documento"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Nombres</ion-label>
+        <ion-input formControlName="nombre" name="nombre"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label position="floating">Apellidos</ion-label>
+        <ion-input formControlName="apellido" name="apellido"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Telefono</ion-label>
+        <ion-input formControlName="telefono" name="telefono" type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" name="email" type="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Dirección</ion-label>
+        <ion-input formControlName="direccion" name="direccion"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Comentario</ion-label>
+        <ion-input formControlName="comment" name="comment"></ion-input>
+      </ion-item>
+
+      <ion-button color="secondary" (click)="updateClient()" *ngIf="updateMode" [disabled]="!form.valid">Actualizar cliente</ion-button>
+      <ion-button color="secondary" (click)="createClient()" *ngIf="!updateMode" [disabled]="!form.valid">Guardar cliente</ion-button>
+
+    </ion-list>
+  </form>
+
+</ion-content>

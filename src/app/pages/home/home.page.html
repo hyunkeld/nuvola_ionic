@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Clientes
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/client">
+        Agregar cliente
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar placeholder="Buscar por telefono" (ionChange)="searchClient()" debounce="500" animated="true"
+      [(ngModel)]="numberSearch"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list *ngIf="clients.length > 0">
+    <ion-item-sliding *ngFor="let item of clients">
+      <ion-item [routerLink]="'/client/'+item.id">
+        <ion-avatar slot="start">
+          <ion-icon name="person-circle-outline"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{item.nombre_completo}}</h2>
+          <h3>
+            <ion-icon name="phone-portrait-outline"></ion-icon>
+            <p>{{item.telefono}}</p>
+          </h3>
+          <h3>
+            <ion-icon name="mail-outline"></ion-icon>
+            <p>{{item.email}}</p>
+          </h3>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="presentAlertConfirm(item.id)" color="danger">Eliminar</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <div class="not-found-client" *ngIf="clients.length == 0">
+    <ion-icon name="alert-circle-outline"></ion-icon>
+    <h1>No se encontro cliente</h1>
+    <ion-button color="primary" routerLink="/client">Crear cliente</ion-button>
+  </div>
+
+  <ion-list *ngIf="travelsUser.length > 0">
+    <ion-list-header lines="inset">
+      <ion-label>Viajes</ion-label>
+      <ion-button [routerLink]="'/travels-new/'+clients[0].email">Agregar Viaje</ion-button>
+    </ion-list-header>
+    <ion-item lines="none" *ngFor="let item of travelsUser">
+     
+      <ion-label>
+        <h1>{{item.pais}}</h1>
+        <p>
+          <b>Departamento: </b>{{item.departamento}}
+        </p>
+        <p>
+          <b>Ciudad: </b>{{item.ciudad}}
+        </p>
+        <p>
+          <b>Fecha de viaje: </b>{{item.fecha_viaje}}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

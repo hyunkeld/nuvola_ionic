@@ -1,0 +1,38 @@
+ion-avatar {
+  ion-icon {
+    font-size: 2em;
+  }
+}
+
+h3 {
+  display: flex;
+  align-items: center;
+
+  ion-icon {
+    margin-right: 5px;
+  }
+}
+
+.not-found-client {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  h1,
+  ion-icon {
+    color: #7f7f84;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+
+  ion-icon {
+    font-size: 3em;
+  }
+}
